@@ -23,3 +23,14 @@ const groceryReducer = (state = initialState.groceries, action) => {
                 return state
     }
 }
+
+let store = Redux.createStore(groceryReducer)
+
+const clearList = () => {
+    e.preventDefault ()
+    let groceryText = document.getElementById('newItem').value=''
+    store.dispatch({
+        type: 'grocery/clear',
+        text: groceryText
+    })
+}
