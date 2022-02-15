@@ -16,32 +16,34 @@ const groceryReducer = (state = initialState.groceries, action) => {
                 ...state,
                 {
                     text: action.text
-                }
-            ]
+                },
+            ];
         case 'grocery/clear':
-            return []
+            return [];
         default:
-            return state
+            return state;
     }
-}
+};
 
-let store = Redux.createStore(groceryReducer)
+let store = Redux.createStore(groceryReducer);
 
 const clearList = () => {
-    document.getElementById('newItem').value = ''
+    document.getElementById('newItem').value = '';
     store.dispatch({
         type: 'grocery/clear'
     })
 }
 const newGrocery = (e) => {
-    e.preventDefault()
-    let groceryText = document.getElementById('newItem').value
+    e.preventDefault();
+    let groceryText = document.getElementById('newItem').value;
     store.dispatch({
         type: 'grocery/add',
-        text: groceryText
+        text: groceryText,
     })
+    console.log(store.getState());
 }
-grocerySubmit.addEventListener('submit', (e) => {newGrocery(e)})
+grocerySubmit.addEventListener('click', (e) => {newGrocery(e);
+});
 clearBtn.addEventListener('click', clearList)
 
 const renderList = (state) => {
